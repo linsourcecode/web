@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>{{username}}模板层</h3>
+<h3>{{obj.name}}</h3>
+<h3>{{fun}}</h3>
+<h3>{{lst.1}}</h3>
+<h3>{{dic.a}}</h3>
+<h3>{{script|safe }}</h3>
+<script>alter(11)</script>
+</body>
+{% if x > 11 %}
+大于11
+{% else %}
+小于11
+{% endif %}
+
+{% for name in lst %}
+  {{forloop.counter}} {{name}}
+{% empty %}
+没有数据
+{% endfor %}
+</html>
