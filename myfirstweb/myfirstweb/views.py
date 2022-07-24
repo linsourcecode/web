@@ -4,8 +4,7 @@ from django.template import loader
 from login.models import people
 from redisbloom.client import Client
 
-import redis
-db =Client(host='hadoop101', port=6379)
+
 
 
 def pages(request):
@@ -13,14 +12,19 @@ def pages(request):
 def index(request):
 
         return render(request, 'login.html')
+def checkExist(name):
+    db = Client(host='hadoop101', port=6379)
+    flag = db.bfExists('userinfo', "lin")
+    return flag
 
 def intpage(request, pg):
 
     username = request.GET.get('username')
     password = request.GET.get('password')
     #object = people.objects.filter(username=username,password=password)
-    flag = db.bfExists('userinfo',username)
-    #print(object)
+    #存在返回一
+    flag = checkExist(username)
+
     if flag == 1:
         print("用户存在")
         return HttpResponse('Get请求成功' + request.GET.get('username', 'c'))
@@ -28,6 +32,12 @@ def intpage(request, pg):
      #引导到注册模块
      print("用户不存在")
      return HttpResponseRedirect('test_html')
+def Register_Info(request):
+    username = request.Get.get('username')
+    password = request.Get.get('password')
+    mes = request.Get.get('mes')
+    object = people(username=username,password=password,mes=mes)
+
 
 
 

@@ -22,8 +22,9 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('page/2003', views.pages),
-    path('page/<int:pg>',views.intpage,name="page"),
-    path('test_html',views.test_html),
+    path('page/<int:pg>', views.intpage,name="page"),
+    path('test_html', views.test_html),
+    path('register', views.Register_Info)
    # path('', views.index, name='index'),
 
 ]
